@@ -195,10 +195,9 @@ loop do
   break unless answer.downcase.start_with?('y')
 end
 
-# rubocop:disable Layout/LineLength
 if overall_winner?(score_board)
-  prompt("#{who_wins_overall(score_board)} won the game by reaching #{WINNING_STREAK} wins!")
+  prompt("#{who_wins_overall(score_board)} won the game" \
+         " by reaching #{WINNING_STREAK} wins!")
 end
-# rubocop:enable Layout/LineLength
 
 prompt(MESSAGES["game_ended"])
