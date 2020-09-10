@@ -1,5 +1,4 @@
 require "yaml"
-require "pry"
 
 MESSAGES = YAML.load_file("twenty_one_messages.yml")
 CARDS_NAMES_WITH_VALUES = { "Ace" => 1, "Jack" => 10, "Queen" => 10,
