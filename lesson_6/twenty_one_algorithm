@@ -1,0 +1,38 @@
+=begin
+1. Initialize decks: [done]
+    - Available cards: hash card => number of cards left
+    - Card values: hash card => value
+      - default ace value is 1
+2. Deal [done]
+    - Samples of keys from available cards that has more than 0 count 
+    - player's hand and dealer's hand: arrays
+    - 2 for player, 2 for dealer: 
+      - first dealt card for dealer is hidden 
+3. Show cards: [done]
+    - need a join_and method
+    - show player's card
+    - show dealer's card
+3. Calculate player's total
+    - count number of aces in hand
+    - total all cards value
+    - add 10 to total for each ace in hand if sum still < 21
+4. Player's turn: 
+    - Player's decision: hit or stay
+    - if hit: 
+      - Deal another card
+      - total player's hand
+      - if busted, exit, annouce dealer won, game ends
+      - if not busted, prompt hit or stay again
+    - if stay, exit
+5. Dealer's turn: 
+    - calculate hand
+    - until hand is over 17: 
+      - deal another card
+      - calculate total
+      - if busted, announce player wins, game ends
+    - if over 17 and not busted, dealer stays
+6. If game still hasn't ended
+    - Calculate player's and dealer's hands, compare
+    - announce winner
+7. play again? 
+=end
