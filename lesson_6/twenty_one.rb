@@ -8,9 +8,20 @@ CARDS_NAMES_WITH_VALUES = { "Ace" => 1, "Jack" => 10, "Queen" => 10,
 STARTING_CARDS_COUNT = 2
 BUSTED_VALUE = 21
 DEALER_MUST_HIT = 17
+WINNING_STREAK = 5
 
 def prompt(message)
   puts "=> #{message}"
+end
+
+def display_welcome
+  system "clear"
+  prompt(MESSAGES["welcome"])
+  prompt("Player will play against Dealer. Whoever reaches #{WINNING_STREAK}/
+          wins first wins overall")
+  prompt(MESSAGES["good_luck"])
+  prompt(MESSAGES["press_enter_to_cont"])
+  gets
 end
 
 def display_good_bye
@@ -152,6 +163,27 @@ def display_round_winner(hands)
   end
 end
 
+def update_score!(winner, score)
+  score[winner] += 1 if winner
+end
+
+def display_running_score(list)
+  list.each { |player, score| prompt("#{player}'s current score is #{score}") }
+end
+
+def display_overall_winner(score)
+  if score["Player"] > score["Dealer"]
+    prompt(MESSAGES["player_wins_overall"])
+  elsif score["Player"] < score["Dealer"]
+    prompt(MESSAGES["dealer_wins_overall"])
+  else
+    prompt(MESSAGES["tie_overall"])
+  end
+end
+
+display_welcome
+score_board = { "Player" => 0, "Dealer" => 0 }
+
 loop do
   available_cards = initialize_new_deck
   current_hands = { "Player" => [], "Dealer" => [] }
@@ -180,7 +212,12 @@ loop do
     end
   end
 
+  update_score!(who_wins_this_round(current_hands), score_board)
+  display_running_score(score_board)
+
+  break if score_board.values.any? { |score| score == WINNING_STREAK }
   break unless play_again?
 end
 
+display_overall_winner(score_board)
 display_good_bye
