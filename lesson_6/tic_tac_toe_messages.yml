@@ -1,0 +1,4 @@
+invalid_move: "Sorry. This move is not valid. Please make another choice:"
+first_move_selection: "Do you want to make the first move? (y or n)"
+play_again?: "Do you want to play again? (y or n)"
+game_ended: "Thank you for playing. Good bye!"
